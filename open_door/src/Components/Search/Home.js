@@ -1,17 +1,10 @@
 import React, { Component } from "react";
 import Results from "./Results";
-import { getBuildingByBorough, getBuildingByStreet } from "../../api";
+import { getBuildingByAddress } from "../../api";
 
 class Home extends Component {
   constructor() {
     super();
-    this.borough = [
-      "brooklyn",
-      "queens",
-      "manhattan",
-      "bronx",
-      "staten island"
-    ];
     this.state = {
       inputValue: "",
       results: []
@@ -39,16 +32,11 @@ class Home extends Component {
     const { results, inputValue } = this.state;
     const { borough } = this;
 
-    if (borough.includes(inputValue)) {
-      getBuildingByBorough(inputValue)
-        .then(res => {
-          this.setState({
-            results: res.data
-          });
-        })
-        .catch(err => console.log("Error:", err));
-    } else {
-      getBuildingByStreet(inputValue)
+    let houseNum = inputValue.split(' ').slice(0,1).join('')
+    let streetName = inputValue.split(' ').slice(1).join('')
+
+    if (inputValue) {
+        getBuildingByAddress(houseNum,streetName)
         .then(res => {
           this.setState({
             results: res.data

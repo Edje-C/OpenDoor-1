@@ -18,7 +18,7 @@ class Display extends Component {
                 )}
               >
                 <span>{b.housenumber}</span> <span>{b.streetname}</span>{" "}
-                <span>{b.borough}</span> <span>{b.zip}</span>{" "}
+                <span>{b.boro}</span> <span>{b.zip}</span>{" "}
               </div>
             </Link>
           </div>
