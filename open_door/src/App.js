@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
@@ -6,6 +7,14 @@ let styles = {
   height: "200px",
   width: "200px"
 }
+=======
+import React, { Component } from "react";
+import {Link, Switch, Route} from 'react-router-dom'
+import logo from "./logo.svg";
+import "./App.css";
+import Home from "./Components/Search/Home";
+
+>>>>>>> 0d2a14f9b154e93e4b27a1d0c33d488d560c8ed0
 class App extends Component {
 
   constructor() {
@@ -57,12 +66,19 @@ class App extends Component {
 
     return (
       <div className="App">
+<<<<<<< HEAD
       <h2>Address: {housenumber}{" "}{streetname}{", "}{boro}{", "}NY{", "}{zip}</h2>
       <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Garfield_Building_Detroit.jpg" alt="building image" style={styles} />
         <div>
           {complaints.length > 0? complaints.map( (violation) => {
             return <p>{violation}</p>
           }): "no any violations"}
+=======
+        <div>
+      <Switch>
+        <Route exact path = "/" component={Home}/>
+      </Switch>
+>>>>>>> 0d2a14f9b154e93e4b27a1d0c33d488d560c8ed0
         </div>
       </div>
     );
