@@ -1,13 +1,18 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import {getBuildingByBorough, getBuildingByStreet} from './api'
+import React, { Component } from "react";
+import {Link, Switch, Route} from 'react-router-dom'
+import logo from "./logo.svg";
+import "./App.css";
+import Home from "./Components/Search/Home";
 
 class App extends Component {
   render() {
-  console.log(getBuildingByStreet)
     return (
       <div className="App">
+        <div>
+      <Switch>
+        <Route exact path = "/" component={Home}/>
+      </Switch>
+        </div>
       </div>
     );
   }
