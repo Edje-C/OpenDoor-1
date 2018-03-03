@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { Switch, Route } from "react-router-dom";
 import axios from "axios";
 let styles = {
   height: "100px",
   width: "100px"
 }
+
 class BuildingInfo extends React.Component {
   constructor() {
     super();
@@ -38,7 +40,8 @@ class BuildingInfo extends React.Component {
 
   render() {
     const { buildings } = this.state;
-
+    const { address} = this.props;
+    console.log(address);
     let buildingURLs =
     [
       "http://assets.nydailynews.com/polopoly_fs/1.1043342.1332131859!/img/httpImage/image.jpg_gen/derivatives/gallery_1200/love-buidling-jpg.jpg",
