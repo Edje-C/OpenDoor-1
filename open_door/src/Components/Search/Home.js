@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Results from "./Results";
 import { getBuildingByAddress } from "../../api";
 import Building from "./Building/Building";
+import Map from "./Map";
 
 class Home extends Component {
   constructor() {
@@ -21,7 +22,7 @@ class Home extends Component {
         duplicates.push(el.buildingid);
         return true;
       }
-    })
+    });
   };
 
   handleSearchInput = e => {
@@ -35,11 +36,17 @@ class Home extends Component {
 
     const { buildingsViolationsArr, inputValue } = this.state;
 
-    let houseNum = inputValue.split(' ').slice(0,1).join('')
-    let streetName = inputValue.split(' ').slice(1).join('')
+    let houseNum = inputValue
+      .split(" ")
+      .slice(0, 1)
+      .join("");
+    let streetName = inputValue
+      .split(" ")
+      .slice(1)
+      .join("");
 
     if (inputValue) {
-        getBuildingByAddress(houseNum,streetName)
+      getBuildingByAddress(houseNum, streetName)
         .then(res => {
           this.setState({
             buildingsViolationsArr: res.data,
@@ -50,9 +57,12 @@ class Home extends Component {
     }
   };
 
-
   render() {
-    const { inputValue, buildingsViolationsArr, uniqueBuildingsArr } = this.state;
+    const {
+      inputValue,
+      buildingsViolationsArr,
+      uniqueBuildingsArr
+    } = this.state;
     const { handleSearchInput, handleForm } = this;
     return (
       <div>
@@ -65,13 +75,18 @@ class Home extends Component {
               onChange={handleSearchInput}
               placeholder="Building #, Street Name"
             />
-            <input type='submit' value='Search' />
+            <input type="submit" value="Search" />
           </form>
         </div>
         <div>
-          <Results 
+          <Results
             uniqueBuildingsArr={uniqueBuildingsArr}
             buildingsViolationsArr={buildingsViolationsArr}
+          />
+        </div>
+        <div>
+          <Map 
+          uniqueBuildingsArr={uniqueBuildingsArr}
           />
         </div>
       </div>
