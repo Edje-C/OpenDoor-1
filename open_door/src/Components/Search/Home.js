@@ -7,22 +7,12 @@ class Home extends Component {
     super();
     this.state = {
       inputValue: "",
-      results: []
+      results: [],
+      classes: false
     };
   }
 
-  // getAllBuildings = () => {
-  //     axios
-  //     .get('')
-  //     .then(res => {
-  //         this.setState({
-  //             allBldg: res.data
-  //         })
-  //     })
-  // }
-
   userSearch = e => {
-    const { allBldg } = this.state;
     this.setState({
       inputValue: e.target.value
     });
@@ -39,7 +29,8 @@ class Home extends Component {
         getBuildingByAddress(houseNum,streetName)
         .then(res => {
           this.setState({
-            results: res.data
+            results: res.data,
+            classes: true
           });
         })
         .catch(err => console.log("Error:", err));
@@ -52,20 +43,21 @@ class Home extends Component {
     console.log(results, inputValue);
 
     return (
-      <div>
-        <div className="filter"></div>
+      <div id="home">
+        <div className="filter"><h1>OpenDoor</h1>
         <input
+          className={this.state.classes ? '' : 'search_bar2'}
           id="search_bar"
           type="text"
           value={inputValue}
           onChange={userSearch}
-          placeholder="Bldng Number, Street Name, Borough"
+          placeholder="ex. 9 Cabrini Boulevard"
         />
         <button id="search_btn" onClick={submitResults}>
           Search
-        </button>
+        </button></div>
 
-        <div>{<Results results={results} />}</div>
+        <div className={this.state.classes? '': 'z'}><Results results={results} /></div>
       </div>
     );
   }

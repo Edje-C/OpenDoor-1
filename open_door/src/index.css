@@ -3,23 +3,7 @@ body {
   padding: 0;
   font-family: sans-serif;
   color: #222;
-  background: url(https://images.unsplash.com/photo-1466350380309-a09bb7347af9?ixlib=rb-0.3.5&s=8166c3a093d43ad045f935f1c39bfebb&auto=format&fit=crop&w=2850&q=80) no-repeat center center fixed;
-  background-size: cover;
   font-family: 'Raleway', sans-serif;
-
-
-
-}
-
-form {
-  padding: 45vh 5%;
-}
-
-h1 {
-  margin: 0;
-  color: white;
-  padding-top: 25vh;
-  font-size: 5em;
 }
 
 .filter {
@@ -28,18 +12,91 @@ h1 {
   display: block;
   position: absolute;
   background-color: rgba(0, 0, 0, .6);
-  z-index: -1;
+  z-index: ;
+}
+
+h1 {
+  margin: 0;
+  color: white;
+  padding-top: 22.5vh;
+  font-size: 5em;
+}
+
+h2 {
+  font-size: 3em;
+  border-bottom: 1px solid #222;
+  color: #555;
+}
+
+h2::after {
+
+}
+
+img {
+  height: 40vh;
+  margin-bottom: 1%;
+}
+
+.building {
+  text-align: left;
+  padding: 2%;
+}
+
+.results_container {
+  margin-bottom: 1%;
+}
+
+.results_container > a {
+  display: block;
+  color: inherit;
+  padding: 1%;
+  text-decoration: none;
+  border-bottom: 1px solid gray;
+}
+
+.results_container > a:hover {
+  color: #888;
+}
+
+.search_bar2 {
+
+}
+
+.z {
+  display: none;
+}
+
+#home {
+  background: url(https://images.unsplash.com/photo-1466350380309-a09bb7347af9?ixlib=rb-0.3.5&s=8166c3a093d43ad045f935f1c39bfebb&auto=format&fit=crop&w=2850&q=80) no-repeat center center fixed;
+  background-size: cover;
+  display: absolute;
+  height: 100vh;
+}
+
+#results {
+  width: 50vw;
+  height: 40vh;
+  display: block;
+  background-color: white;
+  text-align: left;
+  overflow: scroll;
+  margin: -4px auto auto 17.6vw;
+  padding: 15px;
+  font-size: 1.5em;
+  border: 2px solid gray;
+  border-top: none;
 }
 
 #search_bar {
-  width:50vw;
+  width: 50vw;
   height: 30px;
   color: inherit;
-  margin-left: -5vw;
+  margin: 10vh auto auto -5vw;
   padding: 15px;
   border-radius: 5px 0 0px 5px;
   border: 2px solid gray;
   border-right: none;
+  z-index: 1;
 }
 
 #search_btn {
@@ -60,4 +117,11 @@ h1 {
 
 #search_btn:hover {
   background-color: #eee;
+}
+
+#violations {
+  width: 60vw;
+  background-color: #eee;
+  font-size: 1.5em;
+  border: 1px solid #ddd;
 }

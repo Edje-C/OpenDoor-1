@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route } from "react-router-dom";
 import axios from "axios";
-let styles = {
-  height: "100px",
-  width: "100px"
-}
 
 class BuildingInfo extends React.Component {
   constructor() {
@@ -69,17 +65,16 @@ class BuildingInfo extends React.Component {
       }
     }
     return (
-      <div className="App">
-      <h2>Address: {housenumber}{" "}{streetname}{", "}{boro}{", "}NY{", "}{zip}</h2>
+      <div className="building">
+      <h2>{housenumber}{" "}{streetname}{", "}{boro}{", "}NY{" "}{zip}</h2>
       <img
         src={buildingURLs[Math.floor(Math.random() * buildingURLs.length)]}
         alt="building pix"
-        style={styles}
       />
-        <div>
+        <div id="violations">
           {complaints.length > 0? complaints.map( (violation) => {
             return <p key={violation}>{violation}</p>
-          }): "no any violations"}
+          }): "No reported violations"}
         </div>
       </div>
     );

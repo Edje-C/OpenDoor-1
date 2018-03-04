@@ -7,7 +7,7 @@ class Display extends Component {
     const { results } = this.props;
     console.log("Resuts:", results);
     return (
-      <div>
+      <div id="results">
         {results.map(b => (
             <div className="results_container">
             <Link to="/building">
