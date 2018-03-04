@@ -11,8 +11,7 @@ class App extends Component {
      <div className="App">
        <div>
          <Switch>
-           <Route exact path = "/" component={Home}/>
-           <Route exact path={"/building/:id"} component={Building} />
+           <Route path = "/" component={Home}/>
          </Switch>
        </div>
      </div>
@@ -21,3 +20,8 @@ class App extends Component {
 }
 
 export default App;
+
+// <Switch>
+//            <Route exact path = "/" component={Home}/>
+//            <Route exact path={"/building/:id"} component={Building} />
+//          </Switch>

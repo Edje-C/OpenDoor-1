@@ -1,49 +1,39 @@
 import React, { Component } from "react";
 import Results from "./Results";
-import { getBuildingByAddress } from "../../api";
+import { getBuildingByAddress, searchUniqueBuildings } from "../../helper";
 import Building from "./Building/Building";
+import {Link, Switch, Route} from 'react-router-dom'
+
 
 class Home extends Component {
   constructor() {
     super();
     this.state = {
-      inputValue: "",
+      searchInputValue: "",
       buildingsViolationsArr: [],
       uniqueBuildingsArr: []
     };
   }
 
-  getUniqueBuildings = arr => {
-    let duplicates = [];
-
-    return arr.filter(el => {
-      if (!duplicates.includes(el.buildingid)) {
-        duplicates.push(el.buildingid);
-        return true;
-      }
-    })
-  };
-
   handleSearchInput = e => {
     this.setState({
-      inputValue: e.target.value
+      searchInputValue: e.target.value
     });
   };
 
   handleForm = e => {
     e.preventDefault();
+    const { searchInputValue } = this.state;
 
-    const { buildingsViolationsArr, inputValue } = this.state;
+    if (searchInputValue) {
+      const houseNum = searchInputValue.split(' ').slice(0,1).join('')
+      const streetName = searchInputValue.split(' ').slice(1).join('')
 
-    let houseNum = inputValue.split(' ').slice(0,1).join('')
-    let streetName = inputValue.split(' ').slice(1).join('')
-
-    if (inputValue) {
-        getBuildingByAddress(houseNum,streetName)
+      getBuildingByAddress(houseNum, streetName)
         .then(res => {
           this.setState({
             buildingsViolationsArr: res.data,
-            uniqueBuildingsArr: this.getUniqueBuildings(res.data)
+            uniqueBuildingsArr: searchUniqueBuildings(res.data)
           });
         })
         .catch(err => console.log("Error:", err));
@@ -51,18 +41,23 @@ class Home extends Component {
   };
 
   render() {
-<<<<<<< HEAD
-    const { inputValue, buildingsViolationsArr, uniqueBuildingsArr } = this.state;
+    const { searchInputValue, buildingsViolationsArr, uniqueBuildingsArr } = this.state;
     const { handleSearchInput, handleForm } = this;
->>>>>>> 5c6a1ae7165a706f990d8c26071944c5efd92bd0
     return (
       <div>
+        <Switch>
+          <Route exact path={"/building/:id"} component={() => (
+            <Building
+              buildingsViolationsArr={buildingsViolationsArr}
+            />
+            )} />
+        </Switch>
         <div>
           <form onSubmit={handleForm}>
             <input
               id="search_bar"
               type="text"
-              value={inputValue}
+              value={searchInputValue}
               onChange={handleSearchInput}
               placeholder="Building #, Street Name"
             />
