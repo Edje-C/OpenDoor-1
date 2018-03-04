@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Results from "./Results";
 import { getBuildingByAddress } from "../../api";
+import Building from "./Building/Building";
 
 class Home extends Component {
   constructor() {
@@ -49,8 +50,6 @@ class Home extends Component {
   render() {
     const { inputValue, submitted, results } = this.state;
     const { userSearch, submitResults, sendDataToResults } = this;
-    console.log(results, inputValue);
-
     return (
       <div>
         <input
