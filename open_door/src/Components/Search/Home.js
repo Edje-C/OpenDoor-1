@@ -7,30 +7,32 @@ class Home extends Component {
     super();
     this.state = {
       inputValue: "",
-      results: []
+      buildingsViolationsArr: [],
+      uniqueBuildingsArr: []
     };
   }
 
-  // getAllBuildings = () => {
-  //     axios
-  //     .get('')
-  //     .then(res => {
-  //         this.setState({
-  //             allBldg: res.data
-  //         })
-  //     })
-  // }
+  getUniqueBuildings = arr => {
+    let duplicates = [];
 
-  userSearch = e => {
-    const { allBldg } = this.state;
+    return arr.filter(el => {
+      if (!duplicates.includes(el.buildingid)) {
+        duplicates.push(el.buildingid);
+        return true;
+      }
+    })
+  };
+
+  handleSearchInput = e => {
     this.setState({
       inputValue: e.target.value
     });
   };
 
-  submitResults = () => {
-    const { results, inputValue } = this.state;
-    const { borough } = this;
+  handleForm = e => {
+    e.preventDefault();
+
+    const { buildingsViolationsArr, inputValue } = this.state;
 
     let houseNum = inputValue.split(' ').slice(0,1).join('')
     let streetName = inputValue.split(' ').slice(1).join('')
@@ -39,7 +41,8 @@ class Home extends Component {
         getBuildingByAddress(houseNum,streetName)
         .then(res => {
           this.setState({
-            results: res.data
+            buildingsViolationsArr: res.data,
+            uniqueBuildingsArr: this.getUniqueBuildings(res.data)
           });
         })
         .catch(err => console.log("Error:", err));
@@ -47,24 +50,26 @@ class Home extends Component {
   };
 
   render() {
-    const { inputValue, submitted, results } = this.state;
-    const { userSearch, submitResults, sendDataToResults } = this;
-    console.log(results, inputValue);
+    const { inputValue, buildingsViolationsArr, uniqueBuildingsArr } = this.state;
+    const { handleSearchInput, handleForm } = this;
 
     return (
       <div>
-        <input
-          id="search_bar"
-          type="text"
-          value={inputValue}
-          onChange={userSearch}
-          placeholder="Bldng Number, Street Name, Borough"
-        />
-        <button id="search_btn" onClick={submitResults}>
-          Search
-        </button>
-
-        <div>{<Results results={results} />}</div>
+        <div>
+          <form onSubmit={handleForm}>
+            <input
+              id="search_bar"
+              type="text"
+              value={inputValue}
+              onChange={handleSearchInput}
+              placeholder="Building #, Street Name"
+            />
+            <input type='submit' value='Search' />
+          </form>
+        </div>
+        <div>
+          {<Results uniqueBuildingsArr={uniqueBuildingsArr} />}
+        </div>
       </div>
     );
   }
