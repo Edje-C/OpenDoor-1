@@ -1,45 +1,39 @@
 import React, { Component } from "react";
 import Results from "./Results";
-import { getBuildingByAddress } from "../../api";
+import { getBuildingByAddress, searchUniqueBuildings } from "../../helper";
+import Building from "./Building/Building";
+import {Link, Switch, Route} from 'react-router-dom'
+
 
 class Home extends Component {
   constructor() {
     super();
     this.state = {
-      inputValue: "",
-      results: []
+      searchInputValue: "",
+      buildingsViolationsArr: [],
+      uniqueBuildingsArr: []
     };
   }
 
-  // getAllBuildings = () => {
-  //     axios
-  //     .get('')
-  //     .then(res => {
-  //         this.setState({
-  //             allBldg: res.data
-  //         })
-  //     })
-  // }
-
-  userSearch = e => {
-    const { allBldg } = this.state;
+  handleSearchInput = e => {
     this.setState({
-      inputValue: e.target.value
+      searchInputValue: e.target.value
     });
   };
 
-  submitResults = () => {
-    const { results, inputValue } = this.state;
-    const { borough } = this;
+  handleForm = e => {
+    e.preventDefault();
+    const { searchInputValue } = this.state;
 
-    let houseNum = inputValue.split(' ').slice(0,1).join('')
-    let streetName = inputValue.split(' ').slice(1).join('')
+    if (searchInputValue) {
+      const houseNum = searchInputValue.split(' ').slice(0,1).join('')
+      const streetName = searchInputValue.split(' ').slice(1).join('')
 
-    if (inputValue) {
-        getBuildingByAddress(houseNum,streetName)
+      getBuildingByAddress(houseNum, streetName)
         .then(res => {
           this.setState({
-            results: res.data
+            buildingsViolationsArr: res.data,
+            uniqueBuildingsArr: searchUniqueBuildings(res.data)
           });
         })
         .catch(err => console.log("Error:", err));
@@ -47,24 +41,35 @@ class Home extends Component {
   };
 
   render() {
-    const { inputValue, submitted, results } = this.state;
-    const { userSearch, submitResults, sendDataToResults } = this;
-    console.log(results, inputValue);
-
+    const { searchInputValue, buildingsViolationsArr, uniqueBuildingsArr } = this.state;
+    const { handleSearchInput, handleForm } = this;
     return (
       <div>
-        <input
-          id="search_bar"
-          type="text"
-          value={inputValue}
-          onChange={userSearch}
-          placeholder="Bldng Number, Street Name, Borough"
-        />
-        <button id="search_btn" onClick={submitResults}>
-          Search
-        </button>
-
-        <div>{<Results results={results} />}</div>
+        <Switch>
+          <Route exact path={"/building/:id"} component={() => (
+            <Building
+              buildingsViolationsArr={buildingsViolationsArr}
+            />
+            )} />
+        </Switch>
+        <div>
+          <form onSubmit={handleForm}>
+            <input
+              id="search_bar"
+              type="text"
+              value={searchInputValue}
+              onChange={handleSearchInput}
+              placeholder="Building #, Street Name"
+            />
+            <input type='submit' value='Search' />
+          </form>
+        </div>
+        <div>
+          <Results 
+            uniqueBuildingsArr={uniqueBuildingsArr}
+            buildingsViolationsArr={buildingsViolationsArr}
+          />
+        </div>
       </div>
     );
   }
