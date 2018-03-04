@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Results from "./Results";
-import { getBuildingByAddress } from "../../api";
+import { getBuildingByAddress, searchUniqueBuildings } from "../../helper";
 import Building from "./Building/Building";
 import Map from "./Map";
 
@@ -8,49 +8,31 @@ class Home extends Component {
   constructor() {
     super();
     this.state = {
-      inputValue: "",
+      searchInputValue: "",
       buildingsViolationsArr: [],
       uniqueBuildingsArr: []
     };
   }
 
-  getUniqueBuildings = arr => {
-    let duplicates = [];
-
-    return arr.filter(el => {
-      if (!duplicates.includes(el.buildingid)) {
-        duplicates.push(el.buildingid);
-        return true;
-      }
-    });
-  };
-
   handleSearchInput = e => {
     this.setState({
-      inputValue: e.target.value
+      searchInputValue: e.target.value
     });
   };
 
   handleForm = e => {
     e.preventDefault();
+    const { searchInputValue } = this.state;
 
-    const { buildingsViolationsArr, inputValue } = this.state;
+    if (searchInputValue) {
+      const houseNum = searchInputValue.split(' ').slice(0,1).join('')
+      const streetName = searchInputValue.split(' ').slice(1).join('')
 
-    let houseNum = inputValue
-      .split(" ")
-      .slice(0, 1)
-      .join("");
-    let streetName = inputValue
-      .split(" ")
-      .slice(1)
-      .join("");
-
-    if (inputValue) {
       getBuildingByAddress(houseNum, streetName)
         .then(res => {
           this.setState({
             buildingsViolationsArr: res.data,
-            uniqueBuildingsArr: this.getUniqueBuildings(res.data)
+            uniqueBuildingsArr: searchUniqueBuildings(res.data)
           });
         })
         .catch(err => console.log("Error:", err));
@@ -58,11 +40,7 @@ class Home extends Component {
   };
 
   render() {
-    const {
-      inputValue,
-      buildingsViolationsArr,
-      uniqueBuildingsArr
-    } = this.state;
+    const { searchInputValue, buildingsViolationsArr, uniqueBuildingsArr } = this.state;
     const { handleSearchInput, handleForm } = this;
     return (
       <div>
@@ -71,7 +49,7 @@ class Home extends Component {
             <input
               id="search_bar"
               type="text"
-              value={inputValue}
+              value={searchInputValue}
               onChange={handleSearchInput}
               placeholder="Building #, Street Name"
             />
@@ -84,12 +62,11 @@ class Home extends Component {
             buildingsViolationsArr={buildingsViolationsArr}
           />
         </div>
-        <div>
+        <div></div>
           <Map 
           uniqueBuildingsArr={uniqueBuildingsArr}
           />
         </div>
-      </div>
     );
   }
 }

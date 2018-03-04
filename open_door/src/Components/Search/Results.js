@@ -1,12 +1,9 @@
 import React, { Component } from "react";
-import { Link, Route, Switch } from "react-router-dom";
-import Building from "./Building/Building";
+import { Link } from "react-router-dom";
 
 class Display extends Component {
   render() {
-
-    const { uniqueBuildingsArr} = this.props;
-
+    const { uniqueBuildingsArr } = this.props;
     return (
       <div>
         {uniqueBuildingsArr.map(building => (
