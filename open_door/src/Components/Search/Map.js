@@ -50,8 +50,8 @@ export class MapContainer extends Component {
         >
           {uniqueBuildingsArr.map(building => (
             <Marker
-              title={"The marker`s title will appear as a tooltip."}
-              name={"SOMA"}
+              title={building.housenumber + " " + building.streetname }
+              name={building.buildingid}
               position={{ lat: building.latitude, lng: building.longitude }}
               onClick={() => this.onMapClicked(building.buildingid)}
             />
