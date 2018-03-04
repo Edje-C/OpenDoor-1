@@ -2,6 +2,62 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  color: black;
-  background: url(images/bg.jpg) no-repeat center center fixed
+  color: #222;
+  background: url(https://images.unsplash.com/photo-1466350380309-a09bb7347af9?ixlib=rb-0.3.5&s=8166c3a093d43ad045f935f1c39bfebb&auto=format&fit=crop&w=2850&q=80) no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Raleway', sans-serif;
+
+
+
+}
+
+form {
+  padding: 45vh 5%;
+}
+
+h1 {
+  margin: 0;
+  color: white;
+  padding-top: 25vh;
+  font-size: 5em;
+}
+
+.filter {
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  position: absolute;
+  background-color: rgba(0, 0, 0, .6);
+  z-index: -1;
+}
+
+#search_bar {
+  width:50vw;
+  height: 30px;
+  color: inherit;
+  margin-left: -5vw;
+  padding: 15px;
+  border-radius: 5px 0 0px 5px;
+  border: 2px solid gray;
+  border-right: none;
+}
+
+#search_btn {
+  border-style: inset;
+  border-radius: 0 5px 5px 0px;
+  border: 2px solid gray;
+  border-left: .5px solid gray;
+  background-color: white;
+  margin-top: 1%;
+  padding: 21px 2%;
+}
+
+#search_bar, #search_btn {
+  font-size: inherit;
+  display: inline-block;
+  outline: none;
+}
+
+#search_btn:hover {
+  background-color: #eee;
 }

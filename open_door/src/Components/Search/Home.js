@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Redirect, Switch, Route } from "react-router";
 import axios from "axios";
 import Results from "./Results";
-import { getBuildingByBorough, getBuildingByStreet } from "../../api";
+import { getBuildingByAddress} from "../../api";
 
 class Home extends Component {
   constructor() {
@@ -46,15 +46,7 @@ class Home extends Component {
     });
 
     if (borough.includes(inputValue)) {
-      getBuildingByBorough(inputValue)
-        .then(res => {
-          this.setState({
-            results: res.data
-          });
-        })
-        .catch(err => console.log("Error:", err));
-    } else {
-      getBuildingByStreet(inputValue)
+      getBuildingByAddress(inputValue)
         .then(res => {
           this.setState({
             results: res.data
@@ -80,25 +72,27 @@ class Home extends Component {
     }
 
     return (
-      <div>
-        <form id="search_form">
-          {/* <p id="search_title">Search For Borough or Address:</p>  */}
-          <input
-            id="search_bar"
-            type="text"
-            value={inputValue}
-            onChange={userSearch}
-            placeholder="Bldng Number, Street Name, Borough"
-          />
-        </form>
-        <button id="search_btn" onClick={submitResults}>
-          Search
-        </button>
+        <div>
+        <div className='filter'>
+          <h1>OpenDoor</h1></div>
+          <form id="search_form">
+            {/* <p id="search_title">Search For Borough or Address:</p>  */}
+            <input
+              id="search_bar"
+              type="text"
+              value={inputValue}
+              onChange={userSearch}
+              placeholder="ex. 9, Cabrini Boulevard"
+            />
+            <button id="search_btn" onClick={submitResults}>
+            Search
+            </button>
+          </form>
 
-        <Switch>
-            <Route exact path = '/results' render={sendDataToResults} />
-        </Switch>
-      </div>
+          <Switch>
+              <Route exact path = '/results' render={sendDataToResults} />
+          </Switch>
+        </div>
     );
   }
 }
