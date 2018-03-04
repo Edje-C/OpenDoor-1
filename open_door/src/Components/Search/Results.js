@@ -1,22 +1,16 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Route, Switch } from "react-router-dom";
 import Building from "./Building/Building";
 
 class Display extends Component {
   render() {
     const { results } = this.props;
-    console.log("Resuts:", results);
     return (
       <div>
         {results.map(b => (
             <div className="results_container">
-            <Link to="/building">
-              <div
-                className="building"
-                onClick={() => (
-                  <Building address={b.housenumber + " " + b.streetname} />
-                )}
-              >
+            <Link to={`/building/${b.buildingid}`}>
+              <div className="building">
                 <span>{b.housenumber}</span> <span>{b.streetname}</span>{" "}
                 <span>{b.boro}</span> <span>{b.zip}</span>{" "}
               </div>
