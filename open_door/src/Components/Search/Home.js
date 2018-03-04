@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import Results from "./Results";
 import { getBuildingByAddress, searchUniqueBuildings } from "../../helper";
 import Building from "./Building/Building";
-import {Link, Switch, Route} from 'react-router-dom'
-
+import Map from "./Map";
 
 class Home extends Component {
   constructor() {
@@ -45,13 +44,6 @@ class Home extends Component {
     const { handleSearchInput, handleForm } = this;
     return (
       <div>
-        <Switch>
-          <Route exact path={"/building/:id"} component={() => (
-            <Building
-              buildingsViolationsArr={buildingsViolationsArr}
-            />
-            )} />
-        </Switch>
         <div>
           <form onSubmit={handleForm}>
             <input
@@ -61,16 +53,20 @@ class Home extends Component {
               onChange={handleSearchInput}
               placeholder="Building #, Street Name"
             />
-            <input type='submit' value='Search' />
+            <input type="submit" value="Search" />
           </form>
         </div>
         <div>
-          <Results 
+          <Results
             uniqueBuildingsArr={uniqueBuildingsArr}
             buildingsViolationsArr={buildingsViolationsArr}
           />
         </div>
-      </div>
+        <div></div>
+          <Map 
+          uniqueBuildingsArr={uniqueBuildingsArr}
+          />
+        </div>
     );
   }
 }
