@@ -68,7 +68,10 @@ class Home extends Component {
           </form>
         </div>
         <div>
-          {<Results uniqueBuildingsArr={uniqueBuildingsArr} />}
+          <Results 
+            uniqueBuildingsArr={uniqueBuildingsArr}
+            buildingsViolationsArr={buildingsViolationsArr}
+          />
         </div>
       </div>
     );
