@@ -3,6 +3,7 @@ import { Link, Switch, Route } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
 import Home from "./Components/Search/Home";
+import Building from "./Components/Search/Building/Building";
 
 class App extends Component {
   render() {

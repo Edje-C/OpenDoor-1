@@ -5,7 +5,7 @@ import Building from "./Building/Building";
 class Display extends Component {
   render() {
     const { results } = this.props;
-    console.log("Resuts:", results);
+    console.log("Results:", results);
     return (
       <div>
         {results.map(b => (

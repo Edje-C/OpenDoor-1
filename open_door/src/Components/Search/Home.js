@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Results from "./Results";
 import { getBuildingByAddress } from "../../api";
+import { Link, Switch, Route } from "react-router-dom";
+import Building from "./Building/Building";
 
 class Home extends Component {
   constructor() {
@@ -46,9 +48,14 @@ class Home extends Component {
     }
   };
 
+  sendDataToBuilding = () => {
+      const {results} = this.state
+  return <Building buildingID={results[0].buildingid}/>
+}
+
   render() {
     const { inputValue, submitted, results } = this.state;
-    const { userSearch, submitResults, sendDataToResults } = this;
+    const { userSearch, submitResults, sendDataToResults, sendDataToBuilding } = this;
     console.log(results, inputValue);
 
     return (
