@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import {Link, Switch, Route} from 'react-router-dom'
-import logo from "./logo.svg";
+import { Link, Switch, Route } from "react-router-dom";
 import "./App.css";
 import Home from "./Components/Search/Home";
 import Building from "./Components/Search/Building/Building";
@@ -12,7 +11,7 @@ class App extends Component {
        <div>
          <Switch>
            <Route exact path = "/" component={Home}/>
-           <Route exact path={"/building/:id"} component={Building}/>
+           <Route exact path={"/building/:id"} component={Building} />
          </Switch>
        </div>
      </div>
@@ -21,8 +20,3 @@ class App extends Component {
 }
 
 export default App;
-
-// <Switch>
-//            <Route exact path = "/" component={Home}/>
-//            <Route exact path={"/building/:id"} component={Building} />
-//          </Switch>

@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import Results from "./Results";
 import { getBuildingByAddress, searchUniqueBuildings } from "../../helper";
 import Building from "./Building/Building";
-import {Link, Switch, Route} from 'react-router-dom'
-
+import Map from "./Map";
 
 class Home extends Component {
   constructor() {
@@ -69,7 +68,11 @@ class Home extends Component {
               </div>
           </div>
         </div>
-      </div>
+        <div></div>
+          <Map
+          uniqueBuildingsArr={uniqueBuildingsArr}
+          />
+        </div>
     );
   }
 }

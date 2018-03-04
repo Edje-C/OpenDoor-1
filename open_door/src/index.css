@@ -187,3 +187,9 @@ nav {
   padding: 2%;
   border: 1px solid #ccc;
 }
+
+
+#map{
+  width:300px;
+  height: 300px;
+}
