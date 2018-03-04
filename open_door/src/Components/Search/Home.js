@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Results from "./Results";
 import { getBuildingByAddress } from "../../api";
+import Building from "./Building/Building";
 
 class Home extends Component {
   constructor() {
@@ -50,9 +51,10 @@ class Home extends Component {
   };
 
   render() {
+<<<<<<< HEAD
     const { inputValue, buildingsViolationsArr, uniqueBuildingsArr } = this.state;
     const { handleSearchInput, handleForm } = this;
-
+>>>>>>> 5c6a1ae7165a706f990d8c26071944c5efd92bd0
     return (
       <div>
         <div>
