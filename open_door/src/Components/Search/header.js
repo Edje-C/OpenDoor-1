@@ -5,6 +5,11 @@ class Header extends Component {
   render() {
     return (
       <div>
+        <nav>
+          <Link to="/"><div id="logo"><i class="fas fa-home" />OpenDoor</div></Link>
+          <input id="header-search"/>
+          <input type="submit" id="header-submit"/>
+        </nav>
       </div>
     );
   }

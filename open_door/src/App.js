@@ -10,11 +10,10 @@ class App extends Component {
    return (
      <div className="App">
        <div>
-     <Switch>
-       <Route exact path = "/" component={Home}/>
-       <Route exact path={"/building"} component={Building}/>
-
-     </Switch>
+         <Switch>
+           <Route exact path = "/" component={Home}/>
+           <Route exact path={"/building/:id"} component={Building}/>
+         </Switch>
        </div>
      </div>
    );
@@ -22,3 +21,8 @@ class App extends Component {
 }
 
 export default App;
+
+// <Switch>
+//            <Route exact path = "/" component={Home}/>
+//            <Route exact path={"/building/:id"} component={Building} />
+//          </Switch>
