@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import axios from "axios";
-
+import { LinkContainer } from "react-router-bootstrap";
+import { ProgressBar } from "react-bootstrap";
 
 class Building extends React.Component {
   constructor() {
     super();
     this.state = {
       building: [],
-      violations: []
+      violations: [],
+      likesPer: '',
+      dislikePer: ''
     };
   }
 
@@ -29,6 +32,14 @@ class Building extends React.Component {
       });
   }
 
+  /**
+   * @func upvotesAlgorithm
+   * This function will handle the algorithm for the likes and dislikes percentage
+   * by Kelvin 
+   */
+    upvotesAlgorithm = ()=> {
+
+    }
   render() {
     const { building, violations } = this.state;
     let buildingURLs = [
@@ -51,6 +62,7 @@ class Building extends React.Component {
     let streetname = building.streetname;
     let housenumber = building.housenumber;
     let zip = building.zip;
+    
 
     return (
       <div className="App">
@@ -65,7 +77,19 @@ class Building extends React.Component {
           src={buildingURLs[Math.floor(Math.random() * buildingURLs.length)]}
           alt="building pix"
         />
-      
+        <div id="tally_board">
+          # of Violations : {complaints.length}
+          # of complaints : 3 {/*This Will Be User's Comments*/}
+          Likes: 1 Dislikes: 28
+        </div>
+        <div>
+        <LinkContainer to={true}>
+            <ProgressBar id='progress_bar'>
+              <ProgressBar bsStyle="success" now={70} key={1} label={`Likes ${35}`}   />
+              <ProgressBar bsStyle="danger" now={30} key={2} label={`Dislikes ${70}`} />
+            </ProgressBar>
+          </LinkContainer>
+        </div>        
         <div>
           {complaints.length > 0
             ? complaints.map(violation => {
