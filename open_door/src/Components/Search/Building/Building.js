@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link, Route } from "react-router-dom";
 import axios from "axios";
 import Header from '../header';
 import reviews from './seed';
@@ -10,8 +11,15 @@ class Building extends React.Component {
     this.state = {
       building: [],
       violations: [],
-      classes: false
+      render: false
     }
+  }
+
+  renderData = (e) => {
+    e.target.id === "violations" ?
+      this.setState({render: false}):
+      this.setState({render: true})
+
   }
 
   componentDidMount() {
@@ -34,16 +42,6 @@ class Building extends React.Component {
 
   render() {
     const { building, violations } = this.state;
-    let buildingURLs = [
-      "http://assets.nydailynews.com/polopoly_fs/1.1043342.1332131859!/img/httpImage/image.jpg_gen/derivatives/gallery_1200/love-buidling-jpg.jpg",
-      "https://www.emporis.com/images/show/503878-Large-fullheightview-view-from-the-southwest-at-adams-and-willoughby-streets.jpg",
-      "https://brooklyngrowler.files.wordpress.com/2010/10/federal-today.jpg",
-      "http://cdn-img3.streeteasy.com/nyc/image/35/203723935.jpg",
-      "http://www.inetours.com/New_York/Images/Brklyn/Brklyn-4_8797.jpg",
-      "http://static.panoramio.com/photos/large/31391909.jpg",
-      "http://everystockphoto.s3.amazonaws.com/brooklyn_newyorkcity_newyork_1224138_o.jpg",
-      "http://cdn-img-feed.streeteasy.com/nyc/image/92/201507392.jpg"
-    ];
 
     let complaints = [];
     violations.forEach(b => {
@@ -58,31 +56,31 @@ class Building extends React.Component {
     return (
       <div className="building">
         <Header/>
+        <Link to="/add"><i id="add" class="material-icons">add_circle</i></Link>
         <div id="building-content">
           <h2>{housenumber}{" "}{streetname}{", "}{boro}{", "}NY{" "}{zip}</h2>
           <img
             className="building-img"
-            src={buildingURLs[Math.floor(Math.random() * buildingURLs.length)]}
+            src='https://newyorkyimby.com/wp-content/uploads/2016/05/201-207-Cabrini-Rendering-1024x683.jpg'
             alt="building pix"
           />
-          <button className="dropDown">Comments</button>
-          <div id="violations" className={this.state.classes ? '' : 'z'}>
-            {complaints.length > 0? complaints.map( (violation) => {
-              return <p className="violation" key={violation}>{violation}</p>
-            }): "No reported violations"}
-          </div>
-            <div id="reviews">
-              {reviews.map(v => (
-                  <div className="review">
-                    <p class="title">{v.title}</p>
-                    {v.approval? <i class="material-icons text-right">thumb_up</i> : <i class="material-icons">thumb_down</i>}
-                    <p>{v.review}</p>
-                    <p className="text-right">{v.name}</p>
-                  </div>
-              ))}
+          <button className="dropDown" id="violations" onClick={this.renderData}>Violations</button>
+          <button className="dropDown" id="comments" onClick={this.renderData}>Comments</button>
+          <div id="data">
+            {this.state.render?
+              reviews.map(v => (
+                <div className="review">
+                  <p class="title">{v.title}</p>
+                  {v.approval? <i class="material-icons review-approval right">thumb_up</i> : <i class="material-icons review-approval right">thumb_down</i>}
+                  <p>{v.review}</p>
+                  <p className="text-right">{v.name}</p>
+                </div>
+              )): complaints.length > 0? complaints.map( (violation) => {
+                return <p className="violation" key={violation}>{violation}</p>
+              }): "No reported violations"
+            }
           </div>
         </div>
-        <i class="material-icons text-right">add_circle</i>
       </div>
     );
   }
