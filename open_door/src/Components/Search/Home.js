@@ -10,7 +10,8 @@ class Home extends Component {
     this.state = {
       searchInputValue: "",
       buildingsViolationsArr: [],
-      uniqueBuildingsArr: []
+      uniqueBuildingsArr: [],
+      classes: false,
     };
   }
 
@@ -32,7 +33,8 @@ class Home extends Component {
         .then(res => {
           this.setState({
             buildingsViolationsArr: res.data,
-            uniqueBuildingsArr: searchUniqueBuildings(res.data)
+            uniqueBuildingsArr: searchUniqueBuildings(res.data),
+            classes: true
           });
         })
         .catch(err => console.log("Error:", err));
@@ -42,28 +44,32 @@ class Home extends Component {
   render() {
     const { searchInputValue, buildingsViolationsArr, uniqueBuildingsArr } = this.state;
     const { handleSearchInput, handleForm } = this;
+    console.log('Home', this.state)
     return (
       <div>
-        <div>
-          <form onSubmit={handleForm}>
-            <input
-              id="search_bar"
-              type="text"
-              value={searchInputValue}
-              onChange={handleSearchInput}
-              placeholder="Building #, Street Name"
-            />
-            <input type="submit" value="Search" />
-          </form>
-        </div>
-        <div>
-          <Results
-            uniqueBuildingsArr={uniqueBuildingsArr}
-            buildingsViolationsArr={buildingsViolationsArr}
-          />
+        <div id="home">
+          <div className="filter">
+            <h1>OpenDoor</h1>
+            <form onSubmit={handleForm}>
+              <input
+                id="search_bar"
+                type="text"
+                value={searchInputValue}
+                onChange={handleSearchInput}
+                placeholder="ex. 9 Cabrini Boulevard"
+              />
+              <input type='submit' value='Search' id="search_btn"/>
+            </form>
+              <div className={this.state.classes ? '' : 'z'} id="results">
+                <Results
+                uniqueBuildingsArr={uniqueBuildingsArr}
+                buildingsViolationsArr={buildingsViolationsArr}
+                />
+              </div>
+          </div>
         </div>
         <div></div>
-          <Map 
+          <Map
           uniqueBuildingsArr={uniqueBuildingsArr}
           />
         </div>

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Header from '../header';
+import reviews from './seed';
 
 
 class Building extends React.Component {
@@ -7,8 +9,9 @@ class Building extends React.Component {
     super();
     this.state = {
       building: [],
-      violations: []
-    };
+      violations: [],
+      classes: false
+    }
   }
 
   componentDidMount() {
@@ -16,7 +19,7 @@ class Building extends React.Component {
       .get(
         `https://data.cityofnewyork.us/resource/b2iz-pps8.json?$where=buildingid=${
           this.props.match.params.id
-        }&$order=approveddate%20desc&$limit=100`
+        }&$order=approveddate%20desc&$limit=5`
       )
       .then(res => {
         this.setState({
@@ -51,28 +54,35 @@ class Building extends React.Component {
     let streetname = building.streetname;
     let housenumber = building.housenumber;
     let zip = building.zip;
-
+    console.log('reviews', reviews)
     return (
-      <div className="App">
-        <h2>
-          Address: {housenumber} {streetname}
-          {", "}
-          {boro}
-          {", "}NY{", "}
-          {zip}
-        </h2>
-        <img
-          src={buildingURLs[Math.floor(Math.random() * buildingURLs.length)]}
-          alt="building pix"
-        />
-      
-        <div>
-          {complaints.length > 0
-            ? complaints.map(violation => {
-                return <p key={violation}>{violation}</p>;
-              })
-            : "no any violations"}
+      <div className="building">
+        <Header/>
+        <div id="building-content">
+          <h2>{housenumber}{" "}{streetname}{", "}{boro}{", "}NY{" "}{zip}</h2>
+          <img
+            className="building-img"
+            src={buildingURLs[Math.floor(Math.random() * buildingURLs.length)]}
+            alt="building pix"
+          />
+          <button className="dropDown">Comments</button>
+          <div id="violations" className={this.state.classes ? '' : 'z'}>
+            {complaints.length > 0? complaints.map( (violation) => {
+              return <p className="violation" key={violation}>{violation}</p>
+            }): "No reported violations"}
+          </div>
+            <div id="reviews">
+              {reviews.map(v => (
+                  <div className="review">
+                    <p class="title">{v.title}</p>
+                    {v.approval? <i class="material-icons text-right">thumb_up</i> : <i class="material-icons">thumb_down</i>}
+                    <p>{v.review}</p>
+                    <p className="text-right">{v.name}</p>
+                  </div>
+              ))}
+          </div>
         </div>
+        <i class="material-icons text-right">add_circle</i>
       </div>
     );
   }
