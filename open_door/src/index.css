@@ -2,5 +2,280 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  color: black;
+  color: #222;
+  font-family: 'Raleway', sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+h1 {
+  margin: 0 0 0 -2.5vw;
+  color: white;
+  padding-top: 22.5vh;
+  font-size: 5em;
+}
+
+h2 {
+  font-size: 3em;
+}
+
+h2::after {
+  content: '';
+  width: 40vw;
+  height: 2px;
+  display: block;
+  background-color: #222;
+}
+
+h3 {
+  font-size: 2.5em;
+  border-bottom: 2px solid #222;
+  display: inline-block;
+}
+
+input, button {
+  outline: none;
+}
+
+nav {
+  width: 100vw;
+  height: 8vh;
+  background-color: white;
+  font-size: 2em;
+  padding-top: 1%;
+  text-align: center;
+  box-shadow: 0 0 5px gray;
+  position: fixed;
+}
+
+textarea {
+  border: 1px solid #ddd;
+}
+
+.app {
+  text-align: center;
+}
+
+.block {
+  display: block;
+}
+
+.building {
+  text-align: left;
+}
+
+.building-img {
+  height: 40vh;
+  margin: auto auto 2% 2%;
+  display: block;
+}
+
+.dropDown {
+  width: 20vw;
+  height: 5vh;
+  background-color: #eee;
+  border: 1px solid #bbb;
+}
+
+.filter {
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  position: absolute;
+  background-color: rgba(0, 0, 0, .6);
+}
+
+.results_container {
+  margin-bottom: 1%;
+}
+
+.results_container > a {
+  display: block;
+  color: inherit;
+  padding: 1%;
+  text-decoration: none;
+  border-bottom: 1px solid gray;
+}
+
+.results_container > a:hover {
+  color: #888;
+}
+
+.review {
+  border-bottom: 1px solid gray;
+}
+
+.review-approval {
+  padding-top: 2%;
+}
+
+.right {
+  float: right;
+}
+
+.search_bar2 {
+
+}
+
+.text-right {
+  text-align: right;
+}
+
+.title {
+  display: inline-block;
+}
+
+.violation {
+  margin-bottom: 1%;
+}
+
+.z {
+  display: none;
+}
+
+#add {
+  position: fixed;
+  font-size: 4em;
+  margin: 85vh  auto auto 92vw;
+}
+
+#add-form {
+  width: 40vw;
+  margin: auto 35vw;
+  padding-top: 8%;
+  padding-bottom: 5%;
+  text-align: left;
+}
+
+#add-form > input[type="text"] {
+  width: 25vw;
+  font-size: 1em;
+  padding: 2%;
+}
+
+#add-form > input[type="submit"] {
+  width: 5vw;
+  font-size: 1.5em;
+  margin-top: 1%;
+  padding: 2%;
+}
+
+#approval {
+  text-align: left;
+}
+
+#arrow {
+  color: white;
+  font-size: 4em;
+  margin: 88vh auto auto -5vw;
+  position: absolute;
+}
+
+#building-content {
+  padding: 7% 3%;
+}
+
+#header-search, #header-submit {
+  border: 1px solid gray;
+  border-radius: 2px;
+}
+
+#header-search {
+  width: 50vw;
+  height: 3vh;
+  margin-left: -20vw;
+  border-right: none;
+}
+
+#header-submit {
+  padding: 5px 1%;
+  border-left: .5px solid #aaa;
+  height: 3.5vh;
+}
+
+#home {
+  background: url(https://images.unsplash.com/photo-1466350380309-a09bb7347af9?ixlib=rb-0.3.5&s=8166c3a093d43ad045f935f1c39bfebb&auto=format&fit=crop&w=2850&q=80) no-repeat center center fixed;
+  background-size: cover;
+  display: absolute;
+  height: 100vh;
+}
+
+#logo {
+  width: 15vw;
+  float: left;
+}
+
+#new {
+  width: 5em;
+  height: 5em;
+  font-size: 2em;
+  background-color: blue;
+  border: none;
+  border-radius: 100%;
+
+}
+
+#radio-box {
+  margin-bottom: 2%;
+}
+
+#radio-box > i {
+  margin-right: 3%;
+}
+
+#results {
+  width: 50vw;
+  height: 35vh;
+  background-color: white;
+  text-align: left;
+  overflow: scroll;
+  margin: -4px auto auto 17.6vw;
+  padding: 15px;
+  font-size: 1.5em;
+  border: 2px solid gray;
+  border-top: none;
+}
+
+#data {
+  width: 60vw;
+  font-size: 1.25em;
+  padding: 2%;
+  border: 1px solid #ccc;
+}
+
+#map{
+  width:100vw;
+  height: 100vh;
+}
+
+#search_bar {
+  width: 50vw;
+  height: 30px;
+  color: inherit;
+  margin: 10vh auto auto -5vw;
+  padding: 15px;
+  border-radius: 5px 0 0px 5px;
+  border: 2px solid gray;
+  border-right: none;
+}
+
+#search_btn {
+  border-style: inset;
+  border-radius: 0 5px 5px 0px;
+  border: 2px solid gray;
+  border-left: .5px solid gray;
+  background-color: white;
+  margin-top: 1%;
+  padding: 21px 2%;
+}
+
+#search_bar, #search_btn {
+  font-size: inherit;
+  display: inline-block;
+}
+
+#search_btn:hover {
+  background-color: #eee;
 }
