@@ -61,24 +61,28 @@ class Building extends React.Component {
         <div id="building-content">
           <h2>{housenumber}{" "}{streetname}{", "}{boro}{", "}NY{" "}{zip}</h2>
           <img
+            className="building-img"
             src={buildingURLs[Math.floor(Math.random() * buildingURLs.length)]}
             alt="building pix"
           />
-          <button className="dropDown">Violations v</button>
-          <div id="violations" className={this.state.classes ? 'z' : ''}>
+          <button className="dropDown">Comments</button>
+          <div id="violations" className={this.state.classes ? '' : 'z'}>
             {complaints.length > 0? complaints.map( (violation) => {
               return <p className="violation" key={violation}>{violation}</p>
             }): "No reported violations"}
           </div>
-          {reviews.map(v => (
-              <div>
-                <p>{v.title}</p>
-                <p>{v.review}</p>
-                <p>{v.name}</p>
-                {v.approval? <img src="" /> : <img src="" />}
-              </div>
-          ))}
+            <div id="reviews">
+              {reviews.map(v => (
+                  <div className="review">
+                    <p class="title">{v.title}</p>
+                    {v.approval? <i class="material-icons text-right">thumb_up</i> : <i class="material-icons">thumb_down</i>}
+                    <p>{v.review}</p>
+                    <p className="text-right">{v.name}</p>
+                  </div>
+              ))}
+          </div>
         </div>
+        <i class="material-icons text-right">add_circle</i>
       </div>
     );
   }

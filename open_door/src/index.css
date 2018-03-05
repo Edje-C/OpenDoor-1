@@ -48,12 +48,6 @@ i {
   padding-left: 2%;
 }
 
-img {
-  height: 40vh;
-  margin: auto auto 1% 2%;
-  display: block;
-}
-
 nav {
   height: 8vh;
   font-size: 2em;
@@ -65,6 +59,12 @@ nav {
 
 .building {
   text-align: left;
+}
+
+.building-img {
+  height: 40vh;
+  margin: auto auto 2% 2%;
+  display: block;
 }
 
 .dropDown {
@@ -90,8 +90,24 @@ nav {
   color: #888;
 }
 
+.review {
+  border-bottom: 1px solid gray;
+}
+
+.right {
+  float: right;
+}
+
 .search_bar2 {
 
+}
+
+.text-right {
+  text-align: right;
+}
+
+.title {
+  display: inline-block;
 }
 
 .violation {
@@ -136,6 +152,16 @@ nav {
   float: left;
 }
 
+#new {
+  width: 5em;
+  height: 5em;
+  font-size: 2em;
+  background-color: blue;
+  border: none;
+  border-radius: 100%;
+
+}
+
 #results {
   width: 50vw;
   height: 40vh;
@@ -147,6 +173,13 @@ nav {
   font-size: 1.5em;
   border: 2px solid gray;
   border-top: none;
+}
+
+#reviews, #violations {
+  width: 60vw;
+  font-size: 1.25em;
+  padding: 2%;
+  border: 1px solid #ccc;
 }
 
 #search_bar {
@@ -178,14 +211,6 @@ nav {
 
 #search_btn:hover {
   background-color: #eee;
-}
-
-#violations {
-  width: 60vw;
-  /* background-color: #eee; */
-  font-size: 1.25em;
-  padding: 2%;
-  border: 1px solid #ccc;
 }
 
 
