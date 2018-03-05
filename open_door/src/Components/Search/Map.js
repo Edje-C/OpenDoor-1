@@ -46,7 +46,7 @@ export class MapContainer extends Component {
             lat: 40.7128,
             lng: -73.935242
           }}
-          zoom={11}
+          zoom={9}
         >
           {uniqueBuildingsArr.map(building => (
             <Marker

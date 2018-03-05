@@ -1,11 +1,4 @@
-
-
-#map{
-  width:300px;
-  height: 300px;
+.App {
+  text-align: center;
 }
 
-#progress_bar{
-  width:300px;
-  margin-left: 35%;
-}
