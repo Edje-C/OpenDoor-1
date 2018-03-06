@@ -24,10 +24,6 @@ export class MapContainer extends Component {
   };
   render() {
     const { selected, buildingid } = this.state;
-    const style = {
-      width: "700px",
-      height: "300px"
-    };
 
     if (selected) {
       return <Redirect to={`/building/${buildingid}`} />;
@@ -41,7 +37,6 @@ export class MapContainer extends Component {
       <div id="map">
         <Map
           google={this.props.google}
-          style={style}
           initialCenter={{
             lat: 40.7128,
             lng: -73.935242

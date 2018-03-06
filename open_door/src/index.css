@@ -10,14 +10,6 @@ a {
   color: inherit;
 }
 
-.filter {
-  width: 100vw;
-  height: 100vh;
-  display: block;
-  position: absolute;
-  background-color: rgba(0, 0, 0, .6);
-}
-
 h1 {
   margin: 0 0 0 -2.5vw;
   color: white;
@@ -43,18 +35,31 @@ h3 {
   display: inline-block;
 }
 
-i {
-  padding-top: 2%;
-  padding-left: 2%;
+input, button {
+  outline: none;
 }
 
 nav {
+  width: 100vw;
   height: 8vh;
+  background-color: white;
   font-size: 2em;
   padding-top: 1%;
   text-align: center;
   box-shadow: 0 0 5px gray;
-  display: fixed;
+  position: fixed;
+}
+
+textarea {
+  border: 1px solid #ddd;
+}
+
+.app {
+  text-align: center;
+}
+
+.block {
+  display: block;
 }
 
 .building {
@@ -72,6 +77,14 @@ nav {
   height: 5vh;
   background-color: #eee;
   border: 1px solid #bbb;
+}
+
+.filter {
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  position: absolute;
+  background-color: rgba(0, 0, 0, .6);
 }
 
 .results_container {
@@ -92,6 +105,10 @@ nav {
 
 .review {
   border-bottom: 1px solid gray;
+}
+
+.review-approval {
+  padding-top: 2%;
 }
 
 .right {
@@ -116,8 +133,46 @@ nav {
   display: none;
 }
 
+#add {
+  position: fixed;
+  font-size: 4em;
+  margin: 85vh  auto auto 92vw;
+}
+
+#add-form {
+  width: 40vw;
+  margin: auto 35vw;
+  padding-top: 8%;
+  padding-bottom: 5%;
+  text-align: left;
+}
+
+#add-form > input[type="text"] {
+  width: 25vw;
+  font-size: 1em;
+  padding: 2%;
+}
+
+#add-form > input[type="submit"] {
+  width: 5vw;
+  font-size: 1.5em;
+  margin-top: 1%;
+  padding: 2%;
+}
+
+#approval {
+  text-align: left;
+}
+
+#arrow {
+  color: white;
+  font-size: 4em;
+  margin: 88vh auto auto -5vw;
+  position: absolute;
+}
+
 #building-content {
-  padding: 1% 3%;
+  padding: 7% 3%;
 }
 
 #header-search, #header-submit {
@@ -160,9 +215,17 @@ nav {
 
 }
 
+#radio-box {
+  margin-bottom: 2%;
+}
+
+#radio-box > i {
+  margin-right: 3%;
+}
+
 #results {
   width: 50vw;
-  height: 40vh;
+  height: 35vh;
   background-color: white;
   text-align: left;
   overflow: scroll;
@@ -173,11 +236,16 @@ nav {
   border-top: none;
 }
 
-#reviews, #violations {
+#data {
   width: 60vw;
   font-size: 1.25em;
   padding: 2%;
   border: 1px solid #ccc;
+}
+
+#map{
+  width:100vw;
+  height: 100vh;
 }
 
 #search_bar {
@@ -204,15 +272,8 @@ nav {
 #search_bar, #search_btn {
   font-size: inherit;
   display: inline-block;
-  outline: none;
 }
 
 #search_btn:hover {
   background-color: #eee;
-}
-
-
-#map{
-  width:300px;
-  height: 300px;
 }

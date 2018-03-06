@@ -49,6 +49,7 @@ class Home extends Component {
       <div>
         <div id="home">
           <div className="filter">
+            <i id="arrow" class={`material-icons ${this.state.classes? '' : 'z'}`}>keyboard_arrow_down</i>
             <h1>OpenDoor</h1>
             <form onSubmit={handleForm}>
               <input
@@ -60,16 +61,16 @@ class Home extends Component {
               />
               <input type='submit' value='Search' id="search_btn"/>
             </form>
-              <div className={this.state.classes ? '' : 'z'} id="results">
-                <Results
-                uniqueBuildingsArr={uniqueBuildingsArr}
-                buildingsViolationsArr={buildingsViolationsArr}
-                />
-              </div>
+            <div className={this.state.classes ? '' : 'z'} id="results">
+              <Results
+              uniqueBuildingsArr={uniqueBuildingsArr}
+              buildingsViolationsArr={buildingsViolationsArr}
+              />
+            </div>
           </div>
         </div>
           <Map
-          uniqueBuildingsArr={uniqueBuildingsArr}
+            uniqueBuildingsArr={uniqueBuildingsArr}
           />
         </div>
     );
